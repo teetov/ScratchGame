@@ -5,6 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
 public class Symbol {
+
+    public Symbol() {
+    }
+
+    public Symbol(BigDecimal rewardMultiplier, String type, String impact, Integer extra) {
+        this.rewardMultiplier = rewardMultiplier;
+        this.type = type;
+        this.impact = impact;
+        this.extra = extra;
+    }
+
     @JsonProperty("reward_multiplier")
     private BigDecimal rewardMultiplier;
     private String type;

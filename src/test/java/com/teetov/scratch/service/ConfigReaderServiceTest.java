@@ -33,7 +33,7 @@ public class ConfigReaderServiceTest {
         assertEquals(BigDecimal.valueOf(10), bonusSymbol10x.getRewardMultiplier());
         assertEquals("bonus", bonusSymbol10x.getType());
         assertEquals("multiply_reward", bonusSymbol10x.getImpact());
-        assertEquals(2, config.getProbabilities().getStandardSymbols().size());
+        assertEquals(9, config.getProbabilities().getStandardSymbols().size());
         StandardSymbols standardSymbols = config.getProbabilities().getStandardSymbols().get(0);
         assertEquals(0, standardSymbols.getColumn());
         assertEquals(0, standardSymbols.getRow());
