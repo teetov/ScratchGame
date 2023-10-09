@@ -102,8 +102,8 @@ class GameFieldTest {
         symbolsConfig.put("F", new Symbol(BigDecimal.valueOf(1.5), "standard", null, null));
         symbolsConfig.put("10x", new Symbol(BigDecimal.valueOf(10), "bonus", "multiply_reward", null));
         symbolsConfig.put("5x", new Symbol(BigDecimal.valueOf(5), "bonus", "multiply_reward", null));
-        symbolsConfig.put("+1000", new Symbol(null, "bonus", "extra_bonus", 1000));
-        symbolsConfig.put("+500", new Symbol(null, "bonus", "extra_bonus", 500));
+        symbolsConfig.put("+1000", new Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(1000)));
+        symbolsConfig.put("+500", new Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(500)));
         symbolsConfig.put("MISS", new Symbol(null, "bonus", "miss", null));
         return new Symbols(symbolsConfig);
     }

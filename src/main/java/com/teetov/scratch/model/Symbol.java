@@ -1,10 +1,15 @@
 package com.teetov.scratch.model;
 
-public class Symbol {
+import com.teetov.scratch.exception.ScratchGameException;
 
-    private final String name;
+public abstract class Symbol {
 
-    public Symbol(String name) {
+    protected final String name;
+
+    protected Symbol(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new ScratchGameException("Name of one of symbol empty");
+        }
         this.name = name;
     }
 

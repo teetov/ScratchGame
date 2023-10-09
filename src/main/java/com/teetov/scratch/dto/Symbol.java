@@ -9,7 +9,7 @@ public class Symbol {
     public Symbol() {
     }
 
-    public Symbol(BigDecimal rewardMultiplier, String type, String impact, Integer extra) {
+    public Symbol(BigDecimal rewardMultiplier, String type, String impact, BigDecimal extra) {
         this.rewardMultiplier = rewardMultiplier;
         this.type = type;
         this.impact = impact;
@@ -20,7 +20,7 @@ public class Symbol {
     private BigDecimal rewardMultiplier;
     private String type;
     private String impact;
-    private Integer extra;
+    private BigDecimal extra;
 
     public BigDecimal getRewardMultiplier() {
         return rewardMultiplier;
@@ -46,11 +46,11 @@ public class Symbol {
         this.impact = impact;
     }
 
-    public Integer getExtra() {
+    public BigDecimal getExtra() {
         return extra;
     }
 
-    public void setExtra(Integer extra) {
+    public void setExtra(BigDecimal extra) {
         this.extra = extra;
     }
 

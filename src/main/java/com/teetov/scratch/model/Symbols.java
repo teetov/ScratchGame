@@ -11,7 +11,13 @@ public class Symbols {
 
     public Symbols(Map<String, com.teetov.scratch.dto.Symbol> symbolsConfig) {
         symbolsConfig.forEach((name, sbl) -> {
-            symbolMap.put(name, new Symbol(name));
+            if (sbl.getType().equals("standard")) {
+                symbolMap.put(name, new StandardSymbol(name, sbl.getRewardMultiplier()));
+            } else if (sbl.getType().equals("bonus")) {
+                symbolMap.put(name, new BonusSymbol(name, sbl.getImpact(), sbl.getRewardMultiplier(), sbl.getExtra()));
+            } else {
+                throw new ScratchGameException("Unknown symbol type: " + sbl.getType());
+            }
         });
     }
 
