@@ -3,11 +3,9 @@ package com.teetov.scratch.model;
 import com.teetov.scratch.dto.BonusSymbols;
 import com.teetov.scratch.dto.Probabilities;
 import com.teetov.scratch.dto.StandardSymbols;
-import com.teetov.scratch.dto.Symbol;
 import com.teetov.scratch.exception.ScratchGameException;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +20,7 @@ class GameFieldTest {
         int rows = 3;
 
         Probabilities probabilities = generatePossibilities(columns, rows);
-        BonusSymbols bonusSymbols = generateBonusSymbols(probabilities);
-        probabilities.setBonusSymbols(bonusSymbols);
-        Symbols symbols = generateSymbols();
+        Symbols symbols = new Symbols(SymbolsTest.generateSymbols());
 
         GameField gameField = new GameField(columns, rows, probabilities, symbols);
 
@@ -36,7 +32,7 @@ class GameFieldTest {
         }
 
         assertNotNull(gameField.getBonus());
-        assertTrue(bonusSymbols.getSymbols().containsKey(gameField.getBonus().getName()));
+        assertTrue(probabilities.getBonusSymbols().getSymbols().containsKey(gameField.getBonus().getName()));
     }
 
     @Test
@@ -45,21 +41,21 @@ class GameFieldTest {
         int rows = 3;
 
         Probabilities probabilities = generatePossibilities(columns, rows);
-        BonusSymbols bonusSymbols = generateBonusSymbols(probabilities);
-        probabilities.setBonusSymbols(bonusSymbols);
-        Symbols symbols = generateSymbols();
+        Symbols symbols = new Symbols(SymbolsTest.generateSymbols());
 
         assertThrows(ScratchGameException.class, () -> new GameField(1, 2, probabilities, symbols));
     }
 
-    private Probabilities generatePossibilities(int columns, int rows) {
+    public static Probabilities generatePossibilities(int columns, int rows) {
         Probabilities probabilities = new Probabilities();
         ArrayList<StandardSymbols> standardSymbols = generateStandardSymbols(columns, rows);
         probabilities.setStandardSymbols(standardSymbols);
+        BonusSymbols bonusSymbols = generateBonusSymbols();
+        probabilities.setBonusSymbols(bonusSymbols);
         return probabilities;
     }
 
-    private ArrayList<StandardSymbols> generateStandardSymbols(int columns, int rows) {
+    static ArrayList<StandardSymbols> generateStandardSymbols(int columns, int rows) {
         ArrayList<StandardSymbols> standardSymbols = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
@@ -80,7 +76,7 @@ class GameFieldTest {
         return standardSymbols;
     }
 
-    private BonusSymbols generateBonusSymbols(Probabilities probabilities) {
+    static BonusSymbols generateBonusSymbols() {
         BonusSymbols bonusSymbols = new BonusSymbols();
         HashMap<String, Integer> bonusSymbolsMap = new HashMap<>();
         bonusSymbolsMap.put("10x", 1);
@@ -90,21 +86,5 @@ class GameFieldTest {
         bonusSymbolsMap.put("MISS", 5);
         bonusSymbols.setSymbols(bonusSymbolsMap);
         return bonusSymbols;
-    }
-
-    private Symbols generateSymbols() {
-        HashMap<String, Symbol> symbolsConfig = new HashMap<>();
-        symbolsConfig.put("A", new Symbol(BigDecimal.valueOf(50), "standard", null, null));
-        symbolsConfig.put("B", new Symbol(BigDecimal.valueOf(25), "standard", null, null));
-        symbolsConfig.put("C", new Symbol(BigDecimal.valueOf(10), "standard", null, null));
-        symbolsConfig.put("D", new Symbol(BigDecimal.valueOf(5), "standard", null, null));
-        symbolsConfig.put("E", new Symbol(BigDecimal.valueOf(3), "standard", null, null));
-        symbolsConfig.put("F", new Symbol(BigDecimal.valueOf(1.5), "standard", null, null));
-        symbolsConfig.put("10x", new Symbol(BigDecimal.valueOf(10), "bonus", "multiply_reward", null));
-        symbolsConfig.put("5x", new Symbol(BigDecimal.valueOf(5), "bonus", "multiply_reward", null));
-        symbolsConfig.put("+1000", new Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(1000)));
-        symbolsConfig.put("+500", new Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(500)));
-        symbolsConfig.put("MISS", new Symbol(null, "bonus", "miss", null));
-        return new Symbols(symbolsConfig);
     }
 }

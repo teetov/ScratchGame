@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ConfigReaderServiceTest {
+class ConfigReaderServiceTest {
 
     private ConfigReaderService service;
 
@@ -20,7 +20,7 @@ public class ConfigReaderServiceTest {
     }
 
     @Test
-    public void readValidConfigFile() {
+    void readValidConfigFile() {
         GameConfig config = service.readConfig("src/test/resources/configOk.json");
 
         assertEquals(3, config.getColumns());
@@ -44,12 +44,12 @@ public class ConfigReaderServiceTest {
         assertEquals(1, bonusSymbols.getSymbols().get("10x"));
         assertEquals(11, config.getWinCombinations().size());
         WinCombination combinationSame3Times = config.getWinCombinations().get("same_symbol_3_times");
-        assertEquals(1, combinationSame3Times.getRewardMultiplier());
+        assertEquals(BigDecimal.valueOf(1), combinationSame3Times.getRewardMultiplier());
         assertEquals("same_symbols", combinationSame3Times.getWhen());
         assertEquals(3, combinationSame3Times.getCount());
         assertEquals("same_symbols", combinationSame3Times.getGroup());
         WinCombination combinationSameHorizontally = config.getWinCombinations().get("same_symbols_horizontally");
-        assertEquals(2, combinationSameHorizontally.getRewardMultiplier());
+        assertEquals(BigDecimal.valueOf(2), combinationSameHorizontally.getRewardMultiplier());
         assertEquals("linear_symbols", combinationSameHorizontally.getWhen());
         assertEquals("horizontally_linear_symbols", combinationSameHorizontally.getGroup());
         assertEquals(3, combinationSameHorizontally.getCoveredAreas().size());

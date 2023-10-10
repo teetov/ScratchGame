@@ -2,23 +2,41 @@ package com.teetov.scratch.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class WinCombination {
 
+    public WinCombination() {
+    }
+
+    public WinCombination(
+            BigDecimal rewardMultiplier,
+            String when,
+            Integer count,
+            String group,
+            List<List<String>> coveredAreas
+    ) {
+        this.rewardMultiplier = rewardMultiplier;
+        this.when = when;
+        this.count = count;
+        this.group = group;
+        this.coveredAreas = coveredAreas;
+    }
+
     @JsonProperty("reward_multiplier")
-    private double rewardMultiplier;
+    private BigDecimal rewardMultiplier;
     private String when;
     private Integer count;
     private String group;
     @JsonProperty("covered_areas")
     private List<List<String>> coveredAreas;
 
-    public double getRewardMultiplier() {
+    public BigDecimal getRewardMultiplier() {
         return rewardMultiplier;
     }
 
-    public void setRewardMultiplier(double rewardMultiplier) {
+    public void setRewardMultiplier(BigDecimal rewardMultiplier) {
         this.rewardMultiplier = rewardMultiplier;
     }
 

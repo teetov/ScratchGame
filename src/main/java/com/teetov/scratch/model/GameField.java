@@ -12,7 +12,7 @@ public class GameField {
     private final List<List<Symbol>> matrix;
     private final Symbol bonusSymbols;
 
-    GameField(int columns, int rows, Probabilities probabilities, Symbols symbols) {
+    public GameField(int columns, int rows, Probabilities probabilities, Symbols symbols) {
         check(columns, rows, probabilities);
 
         matrix = new ArrayList<>(rows);

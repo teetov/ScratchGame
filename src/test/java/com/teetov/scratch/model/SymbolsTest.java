@@ -1,7 +1,5 @@
 package com.teetov.scratch.model;
 
-import com.teetov.scratch.model.Symbol;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -37,7 +35,7 @@ class SymbolsTest {
         assertEquals(BigDecimal.TEN, bonusSymbolMiss.applyBonus(BigDecimal.TEN));
     }
 
-    private HashMap<String, com.teetov.scratch.dto.Symbol> generateSymbols() {
+    public static HashMap<String, com.teetov.scratch.dto.Symbol> generateSymbols() {
         HashMap<String, com.teetov.scratch.dto.Symbol> symbolsConfig = new HashMap<>();
         symbolsConfig.put("A", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(50), "standard", null, null));
         symbolsConfig.put("B", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(25), "standard", null, null));
