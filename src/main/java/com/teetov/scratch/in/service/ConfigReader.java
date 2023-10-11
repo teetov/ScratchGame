@@ -1,16 +1,16 @@
-package com.teetov.scratch.service;
+package com.teetov.scratch.in.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teetov.scratch.exception.ScratchGameException;
-import com.teetov.scratch.dto.GameConfig;
+import com.teetov.scratch.in.dto.GameConfig;
 
 import java.io.File;
 import java.io.IOException;
 
-public class ConfigReaderService {
+public class ConfigReader {
     private final ObjectMapper mapper;
 
-    public ConfigReaderService(ObjectMapper mapper) {
+    public ConfigReader(ObjectMapper mapper) {
         this.mapper = mapper;
     }
 

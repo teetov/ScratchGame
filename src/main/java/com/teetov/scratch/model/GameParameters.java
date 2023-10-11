@@ -2,6 +2,7 @@ package com.teetov.scratch.model;
 
 import com.teetov.scratch.exception.ScratchGameException;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -50,10 +51,6 @@ public class GameParameters {
         properties = parseCommandArgs(args);
     }
 
-    public String get(Property property) {
-        return properties.get(property);
-    }
-
     private Map<Property, String> parseCommandArgs(String[] args) {
         Map<String, Property> valuesMap = Property.getAllArgsValuesMap();
         Map<Property, String> result = new EnumMap<>(Property.class);
@@ -100,5 +97,17 @@ public class GameParameters {
         }
         message.append(absentRequiredProperty.get(absentRequiredProperty.size() - 1).args.get(0));
         return message;
+    }
+
+    public BigDecimal getBet() {
+        return BigDecimal.valueOf(Double.parseDouble(get(Property.BETTING_AMOUNT)));
+    }
+
+    public String getConfigFilePath() {
+        return get(Property.CONFIG);
+    }
+
+    String get(Property property) {
+        return properties.get(property);
     }
 }

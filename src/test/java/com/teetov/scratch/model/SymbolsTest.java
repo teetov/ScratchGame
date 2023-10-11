@@ -35,19 +35,19 @@ class SymbolsTest {
         assertEquals(BigDecimal.TEN, bonusSymbolMiss.applyBonus(BigDecimal.TEN));
     }
 
-    public static HashMap<String, com.teetov.scratch.dto.Symbol> generateSymbols() {
-        HashMap<String, com.teetov.scratch.dto.Symbol> symbolsConfig = new HashMap<>();
-        symbolsConfig.put("A", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(50), "standard", null, null));
-        symbolsConfig.put("B", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(25), "standard", null, null));
-        symbolsConfig.put("C", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(10), "standard", null, null));
-        symbolsConfig.put("D", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(5), "standard", null, null));
-        symbolsConfig.put("E", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(3), "standard", null, null));
-        symbolsConfig.put("F", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(1.5), "standard", null, null));
-        symbolsConfig.put("10x", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(10), "bonus", "multiply_reward", null));
-        symbolsConfig.put("5x", new com.teetov.scratch.dto.Symbol(BigDecimal.valueOf(5), "bonus", "multiply_reward", null));
-        symbolsConfig.put("+1000", new com.teetov.scratch.dto.Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(1000)));
-        symbolsConfig.put("+500", new com.teetov.scratch.dto.Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(500)));
-        symbolsConfig.put("MISS", new com.teetov.scratch.dto.Symbol(null, "bonus", "miss", null));
+    public static HashMap<String, com.teetov.scratch.in.dto.Symbol> generateSymbols() {
+        HashMap<String, com.teetov.scratch.in.dto.Symbol> symbolsConfig = new HashMap<>();
+        symbolsConfig.put("A", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(50), "standard", null, null));
+        symbolsConfig.put("B", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(25), "standard", null, null));
+        symbolsConfig.put("C", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(10), "standard", null, null));
+        symbolsConfig.put("D", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(5), "standard", null, null));
+        symbolsConfig.put("E", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(3), "standard", null, null));
+        symbolsConfig.put("F", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(1.5), "standard", null, null));
+        symbolsConfig.put("10x", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(10), "bonus", "multiply_reward", null));
+        symbolsConfig.put("5x", new com.teetov.scratch.in.dto.Symbol(BigDecimal.valueOf(5), "bonus", "multiply_reward", null));
+        symbolsConfig.put("+1000", new com.teetov.scratch.in.dto.Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(1000)));
+        symbolsConfig.put("+500", new com.teetov.scratch.in.dto.Symbol(null, "bonus", "extra_bonus", BigDecimal.valueOf(500)));
+        symbolsConfig.put("MISS", new com.teetov.scratch.in.dto.Symbol(null, "bonus", "miss", null));
         return symbolsConfig;
     }
 }

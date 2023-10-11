@@ -23,7 +23,12 @@ public class BonusSymbol extends Symbol {
             if (extra == null) {
                 throw new ScratchGameException("Extra bonus for bonus symbol " + name + " is empty");
             }
-            bonusAction = result -> result.add(extra);
+            bonusAction = result -> {
+                if (result.equals(BigDecimal.ZERO)) {
+                    return result;
+                }
+                return result.add(extra);
+            };
         } else if (impact.equals("miss")) {
             bonusAction = result -> result;
         } else {

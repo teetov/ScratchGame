@@ -1,8 +1,8 @@
 package com.teetov.scratch.model;
 
-import com.teetov.scratch.dto.BonusSymbols;
-import com.teetov.scratch.dto.Probabilities;
-import com.teetov.scratch.dto.StandardSymbols;
+import com.teetov.scratch.in.dto.BonusSymbols;
+import com.teetov.scratch.in.dto.Probabilities;
+import com.teetov.scratch.in.dto.StandardSymbols;
 import com.teetov.scratch.exception.ScratchGameException;
 import org.junit.jupiter.api.Test;
 

@@ -7,14 +7,15 @@ import java.util.Map;
 
 public class Symbols {
 
-    private final Map<String, Symbol> symbolMap = new HashMap<>();
+    private final Map<String, StandardSymbol> symbolMap = new HashMap<>();
+    private final Map<String, BonusSymbol> bonusSymbolMap = new HashMap<>();
 
-    public Symbols(Map<String, com.teetov.scratch.dto.Symbol> symbolsConfig) {
+    public Symbols(Map<String, com.teetov.scratch.in.dto.Symbol> symbolsConfig) {
         symbolsConfig.forEach((name, sbl) -> {
             if (sbl.getType().equals("standard")) {
                 symbolMap.put(name, new StandardSymbol(name, sbl.getRewardMultiplier()));
             } else if (sbl.getType().equals("bonus")) {
-                symbolMap.put(name, new BonusSymbol(name, sbl.getImpact(), sbl.getRewardMultiplier(), sbl.getExtra()));
+                bonusSymbolMap.put(name, new BonusSymbol(name, sbl.getImpact(), sbl.getRewardMultiplier(), sbl.getExtra()));
             } else {
                 throw new ScratchGameException("Unknown symbol type: " + sbl.getType());
             }
@@ -22,10 +23,19 @@ public class Symbols {
     }
 
     public Symbol get(String displayedName) {
-        Symbol symbol = symbolMap.get(displayedName);
-        if (symbol == null) {
-            throw new ScratchGameException("Symbol not specified " + displayedName);
+        if (symbolMap.containsKey(displayedName)) {
+            return symbolMap.get(displayedName);
         }
-        return symbol;
+        if (bonusSymbolMap.containsKey(displayedName)) {
+            return bonusSymbolMap.get(displayedName);
+        }
+        throw new ScratchGameException("Symbol not specified " + displayedName);
+    }
+
+    public BonusSymbol getBonusSymbol(String displayedName) {
+        if (bonusSymbolMap.containsKey(displayedName)) {
+            return bonusSymbolMap.get(displayedName);
+        }
+        throw new ScratchGameException("Symbol not specified " + displayedName);
     }
 }

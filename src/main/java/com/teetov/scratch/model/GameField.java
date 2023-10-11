@@ -1,7 +1,7 @@
 package com.teetov.scratch.model;
 
-import com.teetov.scratch.dto.Probabilities;
-import com.teetov.scratch.dto.StandardSymbols;
+import com.teetov.scratch.in.dto.Probabilities;
+import com.teetov.scratch.in.dto.StandardSymbols;
 import com.teetov.scratch.exception.ScratchGameException;
 
 import java.util.*;
@@ -10,11 +10,10 @@ public class GameField {
 
     private final Random random = new java.util.Random();
     private final List<List<Symbol>> matrix;
-    private final Symbol bonusSymbols;
+    private final BonusSymbol bonusSymbols;
 
     public GameField(int columns, int rows, Probabilities probabilities, Symbols symbols) {
         check(columns, rows, probabilities);
-
         matrix = new ArrayList<>(rows);
         for (int i = 0; i < rows; i++) {
             ArrayList<Symbol> rowList = new ArrayList<>(columns);
@@ -25,6 +24,13 @@ public class GameField {
         }
         bonusSymbols = addBonusSymbol(columns, rows, probabilities, symbols);
         fillWithStandardSymbols(probabilities, matrix, symbols);
+        for (int i = 0; i < rows; i++) {
+            for (int column = 0; column < columns; column++) {
+                if (matrix.get(i).get(column) == null) {
+                    throw new ScratchGameException("Cell with coordinates " + i + ":" + column + " is not filed with symbol");
+                }
+            }
+        }
     }
 
     private void check(int columns, int rows, Probabilities probabilities) {
@@ -36,11 +42,11 @@ public class GameField {
         }
     }
 
-    private Symbol addBonusSymbol(int columns, int rows, Probabilities probabilities, Symbols symbols) {
+    private BonusSymbol addBonusSymbol(int columns, int rows, Probabilities probabilities, Symbols symbols) {
         String bonusSymbolName = generateRandomSymbol(probabilities.getBonusSymbols().getSymbols());
         int row = random.nextInt(rows);
         int column = random.nextInt(columns);
-        Symbol bonusSymbol = symbols.get(bonusSymbolName);
+        BonusSymbol bonusSymbol = symbols.getBonusSymbol(bonusSymbolName);
         matrix.get(row).set(column, bonusSymbol);
         return bonusSymbol;
     }
@@ -77,7 +83,7 @@ public class GameField {
         return matrix;
     }
 
-    public Symbol getBonus() {
+    public BonusSymbol getBonus() {
         return bonusSymbols;
     }
 }

@@ -2,20 +2,31 @@ package com.teetov.scratch;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.teetov.scratch.dto.GameConfig;
+import com.teetov.scratch.exception.ScratchGameException;
+import com.teetov.scratch.in.dto.GameConfig;
 import com.teetov.scratch.model.GameParameters;
-import com.teetov.scratch.service.ConfigReaderService;
+import com.teetov.scratch.in.service.ConfigReader;
+import com.teetov.scratch.model.ScratchGame;
+import com.teetov.scratch.out.service.ConsoleGameOutput;
 
 public class Application {
 
 
     public static void main(String[] args) {
-        GameParameters gameParameters = new GameParameters(args);
+        try {
+            GameParameters gameParameters = new GameParameters(args);
 
-        ObjectMapper mapper = new ObjectMapper();
-        ConfigReaderService readerService = new ConfigReaderService(mapper);
-        GameConfig gameConfig = readerService.readConfig(gameParameters.get(GameParameters.Property.CONFIG));
+            ObjectMapper mapper = new ObjectMapper();
 
+            ConfigReader readerService = new ConfigReader(mapper);
+            GameConfig gameConfig = readerService.readConfig(gameParameters.getConfigFilePath());
+
+            ScratchGame game = new ScratchGame(gameParameters, gameConfig);
+            ConsoleGameOutput consoleGameOutput = new ConsoleGameOutput(mapper);
+            consoleGameOutput.print(game.getGameResult());
+        } catch (ScratchGameException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 }

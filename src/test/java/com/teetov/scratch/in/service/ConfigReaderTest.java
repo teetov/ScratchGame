@@ -1,8 +1,8 @@
-package com.teetov.scratch.service;
+package com.teetov.scratch.in.service;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.teetov.scratch.dto.*;
+import com.teetov.scratch.in.dto.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +10,13 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ConfigReaderServiceTest {
+class ConfigReaderTest {
 
-    private ConfigReaderService service;
+    private ConfigReader service;
 
     @BeforeEach
     public void beforeEach() {
-        service = new ConfigReaderService(new ObjectMapper());
+        service = new ConfigReader(new ObjectMapper());
     }
 
     @Test

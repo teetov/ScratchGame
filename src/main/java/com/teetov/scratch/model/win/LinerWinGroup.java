@@ -1,6 +1,6 @@
 package com.teetov.scratch.model.win;
 
-import com.teetov.scratch.dto.WinCombination;
+import com.teetov.scratch.in.dto.WinCombination;
 import com.teetov.scratch.exception.ScratchGameException;
 import com.teetov.scratch.model.GameField;
 import com.teetov.scratch.model.StandardSymbol;

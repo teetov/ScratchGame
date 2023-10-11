@@ -1,9 +1,8 @@
 package com.teetov.scratch.model.win;
 
-import com.teetov.scratch.dto.WinCombination;
+import com.teetov.scratch.in.dto.WinCombination;
 import com.teetov.scratch.model.GameField;
 import com.teetov.scratch.model.StandardSymbol;
-import com.teetov.scratch.model.Symbol;
 
 import java.util.*;
 
@@ -42,8 +41,8 @@ public class WinRules {
         return result;
     }
 
-    public Map<Symbol, List<WonCombination>> calculateOutcome(GameField field) {
-        Map<Symbol, List<WonCombination>> outcome = new HashMap<>();
+    public Map<StandardSymbol, List<WonCombination>> calculateOutcome(GameField field) {
+        Map<StandardSymbol, List<WonCombination>> outcome = new HashMap<>();
         winCombinationGroups.forEach(group -> {
             Map<StandardSymbol, WonCombination> wonCombinations = group.getWonCombinations(field);
             wonCombinations.forEach((symbol, combination) -> {

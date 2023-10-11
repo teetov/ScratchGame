@@ -1,4 +1,4 @@
-package com.teetov.scratch.dto;
+package com.teetov.scratch.in.dto;
 
 import java.util.Map;
 
