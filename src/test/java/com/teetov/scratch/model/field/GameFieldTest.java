@@ -1,9 +1,12 @@
-package com.teetov.scratch.model;
+package com.teetov.scratch.model.field;
 
 import com.teetov.scratch.in.dto.BonusSymbols;
 import com.teetov.scratch.in.dto.Probabilities;
 import com.teetov.scratch.in.dto.StandardSymbols;
 import com.teetov.scratch.exception.ScratchGameException;
+import com.teetov.scratch.model.symbol.Symbol;
+import com.teetov.scratch.model.symbol.Symbols;
+import com.teetov.scratch.model.symbol.SymbolsTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ class GameFieldTest {
 
         GameField gameField = new GameField(columns, rows, probabilities, symbols);
 
-        List<List<com.teetov.scratch.model.Symbol>> matrix = gameField.getMatrix();
+        List<List<Symbol>> matrix = gameField.getMatrix();
 
         assertEquals(rows, matrix.size());
         for (int i = 0; i < rows; i++) {

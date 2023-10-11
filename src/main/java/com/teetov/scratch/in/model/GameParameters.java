@@ -1,4 +1,4 @@
-package com.teetov.scratch.model;
+package com.teetov.scratch.in.model;
 
 import com.teetov.scratch.exception.ScratchGameException;
 
@@ -107,7 +107,7 @@ public class GameParameters {
         return get(Property.CONFIG);
     }
 
-    String get(Property property) {
+    private String get(Property property) {
         return properties.get(property);
     }
 }

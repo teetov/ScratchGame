@@ -1,7 +1,10 @@
-package com.teetov.scratch.model;
+package com.teetov.scratch.in.model;
 
 import com.teetov.scratch.exception.ScratchGameException;
+import com.teetov.scratch.in.model.GameParameters;
 import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,18 +14,18 @@ class GameParametersTest {
     void correctFullCommandLineArguments() {
         String[] args = { "--config", "config.json", "--betting-amount", "100"};
         GameParameters commandArgs = new GameParameters(args);
-        assertEquals("config.json", commandArgs.get(GameParameters.Property.CONFIG));
-        assertEquals("100", commandArgs.get(GameParameters.Property.BETTING_AMOUNT));
+        assertEquals("config.json", commandArgs.getConfigFilePath());
+        assertEquals(BigDecimal.valueOf(100), commandArgs.getBet().setScale(0));
 
         String[] argsAnotherOrder = { "--betting-amount", "100", "--config", "config.json" };
         GameParameters commandArgs2 = new GameParameters(argsAnotherOrder);
-        assertEquals("config.json", commandArgs2.get(GameParameters.Property.CONFIG));
-        assertEquals("100", commandArgs2.get(GameParameters.Property.BETTING_AMOUNT));
+        assertEquals("config.json", commandArgs2.getConfigFilePath());
+        assertEquals(BigDecimal.valueOf(100), commandArgs2.getBet().setScale(0));
 
         String[] argsAdditionalUnusedArg = { "--betting-amount", "100", "--unused", "--config", "config.json" };
         GameParameters commandArgs3 = new GameParameters(argsAdditionalUnusedArg);
-        assertEquals("config.json", commandArgs3.get(GameParameters.Property.CONFIG));
-        assertEquals("100", commandArgs3.get(GameParameters.Property.BETTING_AMOUNT));
+        assertEquals("config.json", commandArgs3.getConfigFilePath());
+        assertEquals(BigDecimal.valueOf(100), commandArgs3.getBet().setScale(0));
     }
 
     @Test

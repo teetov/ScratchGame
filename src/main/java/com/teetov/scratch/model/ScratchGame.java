@@ -1,6 +1,11 @@
 package com.teetov.scratch.model;
 
 import com.teetov.scratch.in.dto.GameConfig;
+import com.teetov.scratch.in.model.GameParameters;
+import com.teetov.scratch.model.field.GameField;
+import com.teetov.scratch.model.reward.Reward;
+import com.teetov.scratch.model.symbol.StandardSymbol;
+import com.teetov.scratch.model.symbol.Symbols;
 import com.teetov.scratch.model.win.WinRules;
 import com.teetov.scratch.model.win.WonCombination;
 import com.teetov.scratch.out.dto.GameResult;

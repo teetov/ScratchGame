@@ -1,9 +1,9 @@
 package com.teetov.scratch.out.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.teetov.scratch.model.BonusSymbol;
-import com.teetov.scratch.model.StandardSymbol;
-import com.teetov.scratch.model.Symbol;
+import com.teetov.scratch.model.symbol.BonusSymbol;
+import com.teetov.scratch.model.symbol.StandardSymbol;
+import com.teetov.scratch.model.symbol.Symbol;
 import com.teetov.scratch.model.win.WonCombination;
 
 import java.math.BigDecimal;

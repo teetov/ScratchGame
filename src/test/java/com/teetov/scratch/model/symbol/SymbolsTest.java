@@ -1,4 +1,4 @@
-package com.teetov.scratch.model;
+package com.teetov.scratch.model.symbol;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class SymbolsTest {
+public class SymbolsTest {
 
     @Test
     void createValidSymbols() {

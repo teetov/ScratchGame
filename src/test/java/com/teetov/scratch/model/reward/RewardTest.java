@@ -1,5 +1,8 @@
-package com.teetov.scratch.model;
+package com.teetov.scratch.model.reward;
 
+import com.teetov.scratch.model.reward.Reward;
+import com.teetov.scratch.model.symbol.BonusSymbol;
+import com.teetov.scratch.model.symbol.StandardSymbol;
 import com.teetov.scratch.model.win.WonCombination;
 import org.junit.jupiter.api.Test;
 

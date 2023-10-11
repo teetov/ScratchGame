@@ -1,10 +1,10 @@
 package com.teetov.scratch.model.win;
 
 import com.teetov.scratch.in.dto.WinCombination;
-import com.teetov.scratch.model.BonusSymbol;
-import com.teetov.scratch.model.GameField;
-import com.teetov.scratch.model.StandardSymbol;
-import com.teetov.scratch.model.Symbol;
+import com.teetov.scratch.model.symbol.BonusSymbol;
+import com.teetov.scratch.model.field.GameField;
+import com.teetov.scratch.model.symbol.StandardSymbol;
+import com.teetov.scratch.model.symbol.Symbol;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

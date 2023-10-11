@@ -1,8 +1,11 @@
-package com.teetov.scratch.model;
+package com.teetov.scratch.model.field;
 
 import com.teetov.scratch.in.dto.Probabilities;
 import com.teetov.scratch.in.dto.StandardSymbols;
 import com.teetov.scratch.exception.ScratchGameException;
+import com.teetov.scratch.model.symbol.BonusSymbol;
+import com.teetov.scratch.model.symbol.Symbol;
+import com.teetov.scratch.model.symbol.Symbols;
 
 import java.util.*;
 

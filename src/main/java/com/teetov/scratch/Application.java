@@ -4,13 +4,12 @@ package com.teetov.scratch;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teetov.scratch.exception.ScratchGameException;
 import com.teetov.scratch.in.dto.GameConfig;
-import com.teetov.scratch.model.GameParameters;
+import com.teetov.scratch.in.model.GameParameters;
 import com.teetov.scratch.in.service.ConfigReader;
 import com.teetov.scratch.model.ScratchGame;
 import com.teetov.scratch.out.service.ConsoleGameOutput;
 
 public class Application {
-
 
     public static void main(String[] args) {
         try {

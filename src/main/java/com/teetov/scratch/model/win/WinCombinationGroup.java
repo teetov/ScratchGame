@@ -1,8 +1,8 @@
 package com.teetov.scratch.model.win;
 
 import com.teetov.scratch.exception.ScratchGameException;
-import com.teetov.scratch.model.GameField;
-import com.teetov.scratch.model.StandardSymbol;
+import com.teetov.scratch.model.field.GameField;
+import com.teetov.scratch.model.symbol.StandardSymbol;
 
 import java.util.Map;
 

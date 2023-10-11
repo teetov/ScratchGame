@@ -1,4 +1,4 @@
-package com.teetov.scratch.model;
+package com.teetov.scratch.model.symbol;
 
 import com.teetov.scratch.exception.ScratchGameException;
 
