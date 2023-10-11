@@ -11,7 +11,7 @@ import com.teetov.scratch.out.service.ConsoleGameOutput;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         try {
             GameParameters gameParameters = new GameParameters(args);
 
