@@ -3,6 +3,7 @@ package com.teetov.scratch.model.win;
 import com.teetov.scratch.dto.WinCombination;
 import com.teetov.scratch.exception.ScratchGameException;
 import com.teetov.scratch.model.GameField;
+import com.teetov.scratch.model.StandardSymbol;
 import com.teetov.scratch.model.Symbol;
 
 import java.util.ArrayList;
@@ -41,15 +42,15 @@ public class LinerWinGroup extends WinCombinationGroup {
             throw new ScratchGameException("Unexpected covered area format " + coordinatesConfig);
         }
         String[] splitCoordinates = coordinatesConfig.split(":");
-        Integer row = Integer.valueOf(splitCoordinates[0]);
-        Integer column = Integer.valueOf(splitCoordinates[1]);
+        int row = Integer.parseInt(splitCoordinates[0]);
+        int column = Integer.parseInt(splitCoordinates[1]);
         return new Integer[]{row, column};
     }
 
     @Override
-    public Map<Symbol, WonCombination> getWonCombinations(GameField gameField) {
+    public Map<StandardSymbol, WonCombination> getWonCombinations(GameField gameField) {
         List<List<Symbol>> matrix = gameField.getMatrix();
-        Map<Symbol, WonCombination> result = new HashMap<>();
+        Map<StandardSymbol, WonCombination> result = new HashMap<>();
         coveredAreas.forEach(area ->
             addToResultIfAreaFilledWithSameSymbol(matrix, result, area)
         );
@@ -58,23 +59,28 @@ public class LinerWinGroup extends WinCombinationGroup {
 
     private void addToResultIfAreaFilledWithSameSymbol(
             List<List<Symbol>> matrix,
-            Map<Symbol, WonCombination> result,
+            Map<StandardSymbol, WonCombination> result,
             List<Integer[]> area
     ) {
         Symbol first = null;
         for (int i = 0; i < area.size(); i++) {
             Integer[] coordinate = area.get(i);
             Symbol symbol = matrix.get(coordinate[0]).get(coordinate[1]);
-            if (result.containsKey(symbol)) {
+            if (symbol instanceof StandardSymbol) {
+                StandardSymbol standardSymbol = (StandardSymbol) symbol;
+                if (result.containsKey(standardSymbol)) {
+                    break;
+                }
+                if (first == null) {
+                    first = standardSymbol;
+                } else if (standardSymbol != first) {
+                    break;
+                }
+                if (i == area.size() - 1) {
+                    result.put(standardSymbol, wonCombination);
+                }
+            } else {
                 break;
-            }
-            if (first == null) {
-                first = symbol;
-            } else if (symbol != first) {
-                break;
-            }
-            if (i == area.size() - 1) {
-                result.put(symbol, wonCombination);
             }
         }
     }

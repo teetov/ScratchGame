@@ -29,8 +29,8 @@ public class SameSymbolWinGroup extends WinCombinationGroup {
     }
 
     @Override
-    public Map<Symbol, WonCombination> getWonCombinations(GameField gameField) {
-        Map<Symbol, Long> symbolsCount = countAllStandardSymbols(gameField);
+    public Map<StandardSymbol, WonCombination> getWonCombinations(GameField gameField) {
+        Map<StandardSymbol, Long> symbolsCount = countAllStandardSymbols(gameField);
         Integer minRewardCount = symbolCountRewardMap.firstKey();
 
         return symbolsCount.entrySet().stream()
@@ -44,11 +44,12 @@ public class SameSymbolWinGroup extends WinCombinationGroup {
         return symbolCountRewardMap.get(bestCombination);
     }
 
-    private Map<Symbol, Long> countAllStandardSymbols(GameField gameField) {
+    private Map<StandardSymbol, Long> countAllStandardSymbols(GameField gameField) {
         List<List<Symbol>> matrix = gameField.getMatrix();
         return matrix.stream()
                 .flatMap(Collection::stream)
                 .filter(StandardSymbol.class::isInstance)
+                .map(StandardSymbol.class::cast)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }

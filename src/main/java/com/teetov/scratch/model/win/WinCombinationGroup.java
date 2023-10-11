@@ -2,7 +2,7 @@ package com.teetov.scratch.model.win;
 
 import com.teetov.scratch.exception.ScratchGameException;
 import com.teetov.scratch.model.GameField;
-import com.teetov.scratch.model.Symbol;
+import com.teetov.scratch.model.StandardSymbol;
 
 import java.util.Map;
 
@@ -17,5 +17,5 @@ public abstract class WinCombinationGroup {
         this.groupName = groupName;
     }
 
-    public abstract Map<Symbol, WonCombination> getWonCombinations(GameField gameField);
+    public abstract Map<StandardSymbol, WonCombination> getWonCombinations(GameField gameField);
 }
